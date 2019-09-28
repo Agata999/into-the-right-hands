@@ -11,8 +11,14 @@ class LandingPage(View):
         for donation in donations:
             quantity += donation.quantity
         supported_institutions = len(list(set([d.institution for d in donations])))
+        foundations = Institution.objects.filter(type=0)
+        NGOs = Institution.objects.filter(type=1)
+        local_collections = Institution.objects.filter(type=2)
         return render(request, 'index.html', {'quantity': quantity,
-                                              'institutions': supported_institutions})
+                                              'supported_institutions': supported_institutions,
+                                              'foundations': foundations,
+                                              'NGOs': NGOs,
+                                              'local_collections': local_collections})
 
 
 class AddDonation(View):
