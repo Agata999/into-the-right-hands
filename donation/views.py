@@ -1,4 +1,5 @@
-from django.db.models import Count
+from django.contrib import messages
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.views import View
 from .models import Donation, Institution, Category
@@ -34,3 +35,20 @@ class Login(View):
 class Register(View):
     def get(self, request):
         return render(request, 'register.html')
+
+    def post(self, request):
+        name = request.POST['name']
+        surname = request.POST['surname']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['password2']
+        users = [user.email for user in User.objects.all()]
+        if password != password2:
+            messages.warning(request, 'Podane hasła nie są identyczne! Spróbuj jeszcze raz')
+            return render(request, 'register.html')
+        elif email in users:
+            messages.warning(request, 'Wprawadzony adres e-mail już istnieje!')
+            return render(request, 'register.html')
+        User.objects.create_user(username=email, first_name=name, last_name=surname, email=email, password=password)
+        return render(request, 'login.html')
+

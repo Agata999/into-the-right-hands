@@ -4,7 +4,15 @@
     </header>
     <section id="register" class="login-page">
       <h2>Załóż konto</h2>
-      <form>
+    {% if messages %}
+        <div>
+        {% for message in messages %}
+            <p style="color: red; font-size: 20px">{{ message }}</p>
+        {% endfor %}
+        </div>
+    {% endif %}
+      <form action="{% url 'register' %}" method="post">
+          {% csrf_token %}
         <div class="form-group">
           <input type="text" name="name" placeholder="Imię" />
         </div>

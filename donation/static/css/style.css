@@ -1599,6 +1599,10 @@ footer .bottom-line--icons a img {
   opacity: 0.8;
 }
 
+.messages {
+  color: #cc1111;
+  font-size: medium;
+}
 /* line 19, scss/style.scss */
 .login-page {
   display: -webkit-box;
