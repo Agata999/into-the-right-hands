@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
+{% block header %}class="header--main-page"{% endblock %}
 {%  block content %}
       <div class="slogan container container--90">
-         {% block header %}class="header--main-page"{% endblock %}
+
         <div class="slogan--item">
           <h1>
             Zacznij pomagać!<br />
@@ -17,13 +18,13 @@
         <div class="stats--item">
           <em>{{ quantity }}</em>
           <h3>Oddanych worków</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum tempora!</p>
+          <p>Dzięki ludziom dobrej woli, zebraliśmy już aż {{ quantity }} worków ubrań, zabawek, sprzętu AGD, a nawet jedzenia.</p>
         </div>
 
         <div class="stats--item">
-          <em>{{ supported_institutions }}</em>
+          <em>{{ supported_institutions.count }}</em>
           <h3>Wspartych organizacji</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas quam.</p>
+          <p>Wspieramy tylko zweryfikowane instytucje</p>
         </div>
 
       </div>
@@ -98,13 +99,6 @@
           </li>
             {% endfor %}
         </ul>
-        <!-- Pagination
-        <ul class="help--slides-pagination">
-          <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
-        </ul>
-        -->
       </div>
 
 
@@ -128,16 +122,7 @@
             </div></div>
           </li>
             {% endfor %}
-
-        <!-- Pagination
-        <ul class="help--slides-pagination">
-          <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="4">4</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="5">5</a></li>
         </ul>
-        -->
       </div>
 
       <!-- SLIDE 3 -->
@@ -158,14 +143,7 @@
             </div></div>
           </li>
             {% endfor %}
-
-
-        <!-- Pagination
-        <ul class="help--slides-pagination">
-          <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
         </ul>
-        -->
       </div>
     </section>
 {% endblock %}

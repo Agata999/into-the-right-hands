@@ -1,6 +1,8 @@
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.db.models import Count
+from django.shortcuts import render, redirect
 from django.views import View
 from .models import Donation, Institution, Category
 
@@ -11,10 +13,12 @@ class LandingPage(View):
         quantity = 0
         for donation in donations:
             quantity += donation.quantity
-        supported_institutions = len(list(set([d.institution for d in donations])))
+        supported_institutions = Donation.objects.all().values('institution').annotate(total=Count('institution')).order_by('total')
+
         foundations = Institution.objects.filter(type=0)
         NGOs = Institution.objects.filter(type=1)
         local_collections = Institution.objects.filter(type=2)
+
         return render(request, 'index.html', {'quantity': quantity,
                                               'supported_institutions': supported_institutions,
                                               'foundations': foundations,
@@ -30,6 +34,15 @@ class AddDonation(View):
 class Login(View):
     def get(self, request):
         return render(request, 'login.html')
+
+    def post(self, request):
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('landing_page')
+        return redirect('register')
 
 
 class Register(View):
@@ -50,5 +63,10 @@ class Register(View):
             messages.warning(request, 'Wprawadzony adres e-mail już istnieje!')
             return render(request, 'register.html')
         User.objects.create_user(username=email, first_name=name, last_name=surname, email=email, password=password)
-        return render(request, 'login.html')
+        return redirect('login')
 
+
+class Logout(View):
+    def get(self, request):
+        logout(request)
+        return redirect('landing_page')
