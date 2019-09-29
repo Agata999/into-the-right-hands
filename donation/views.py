@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.db.models import Count
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .models import Donation, Institution, Category
 
@@ -35,7 +35,6 @@ class AddDonation(LoginRequiredMixin, View):
         institutions = Institution.objects.all()
         return render(request, 'form.html', {'categories': categories,
                                              'institutions': institutions})
-
 
 
 class Login(View):
@@ -77,3 +76,11 @@ class Logout(View):
     def get(self, request):
         logout(request)
         return redirect('landing_page')
+
+
+class UserDetails(LoginRequiredMixin, View):
+    login_url = '/login/'
+
+    def get(self, request, id):
+        user = User.objects.get(id=id)
+        return render(request, 'user.html', {'user': user})

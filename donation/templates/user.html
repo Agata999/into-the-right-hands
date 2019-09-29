@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{%  block content %}
+    </header>
+    <section>
+
+      <div class="about-us--text">
+        <h2>Twoje dane:</h2>
+        <p>Imię: {{ user.first_name }}</p>
+        <p>Nazwisko: {{ user.last_name }}</p>
+        <p>e-mail: {{ user.email }}</p>
+      </div>
+    </section>
+{% endblock %}
