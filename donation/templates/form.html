@@ -62,7 +62,7 @@
                 <input
                   type="checkbox"
                   name="categories"
-                  value={{ category.id }}
+                  value="{{ category.id }}"
                 />
                 <span class="checkbox"></span>
                 <span class="description"
@@ -95,14 +95,18 @@
 
 
 
-          <!-- STEP 4 -->
+          <!-- STEP 3 -->
           <div data-step="3">
             <h3>Wybierz organizację, której chcesz pomóc:</h3>
-
+            {% for institution in institutions %}
             <div class="form-group form-group--checkbox">
+                <p class="categories" hidden>
+                    {% for category in institution.categories.all %}
+                        {{ category.id }}
+                    {% endfor %}
+                </p>
               <label>
-                  {% for institution in institutions %}
-                <input type="radio" name="organization" value="old" />
+                <input type="radio" name="organization" value="{{ institution.id }}" />
                 <span class="checkbox radio"></span>
                 <span class="description">
                   <div class="title">{{ institution.name }}</div>
@@ -110,9 +114,9 @@
                     {{ institution.description }}
                   </div>
                 </span>
-                  {% endfor %}
               </label>
             </div>
+            {% endfor %}
 
             <div class="form-group form-group--buttons">
               <button type="button" class="btn prev-step">Wstecz</button>
@@ -120,7 +124,7 @@
             </div>
           </div>
 
-          <!-- STEP 5 -->
+          <!-- STEP 4 -->
           <div data-step="4">
             <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
 
@@ -172,7 +176,7 @@
             </div>
           </div>
 
-          <!-- STEP 6 -->
+          <!-- STEP 5 -->
           <div data-step="5">
             <h3>Podsumowanie Twojej darowizny</h3>
 

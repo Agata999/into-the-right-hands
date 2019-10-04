@@ -172,7 +172,8 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$prev = form.querySelectorAll(".prev-step");
       this.$step = form.querySelector(".form--steps-counter span");
       this.currentStep = 1;
-
+      this.$checkboxCategories = form.querySelectorAll("input[type=checkbox]");
+      this.$categoriesOfInstitution = form.querySelectorAll(".categories");
       this.$stepInstructions = form.querySelectorAll(".form--steps-instructions p");
       const $stepForms = form.querySelectorAll("form > div");
       this.slides = [...this.$stepInstructions, ...$stepForms];
@@ -235,6 +236,26 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 6;
 
       // TODO: get data from inputs and show them in summary
+
+      let categories = [];
+      this.$checkboxCategories.forEach(function (e) {
+        if (e.checked) {
+          categories.push(e.value)
+        }
+      });
+
+      for (let i = 0; i < categories.length; i++) {
+        for (let j = 0; j < this.$categoriesOfInstitution.length; j++) {
+          let categoriesOfInstitution = this.$categoriesOfInstitution[j].innerText
+          console.log(categories[i]);
+          console.log(categoriesOfInstitution);
+          if (categoriesOfInstitution.indexOf(categories[i]) >= 0) {
+          } else {
+            this.$categoriesOfInstitution[j].parentElement.hidden = true
+          }
+        }
+      }
+
     }
 
     /**
