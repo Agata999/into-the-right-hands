@@ -174,6 +174,24 @@ document.addEventListener("DOMContentLoaded", function() {
       this.currentStep = 1;
       this.$checkboxCategories = form.querySelectorAll("input[type=checkbox]");
       this.$categoriesOfInstitution = form.querySelectorAll(".categories");
+      this.$quantity = form.querySelector("input[name=bags]");
+      this.$chosenInstitution = form.querySelector("input[name=organization]:checked");
+      this.$street = form.querySelector("input[name=address]");
+      this.$city = form.querySelector("input[name=city]");
+      this.$postcode = form.querySelector("input[name=postcode]");
+      this.$phone = form.querySelector("input[name=phone]");
+      this.$date = form.querySelector("input[name=data]");
+      this.$time = form.querySelector("input[name=time]");
+      this.$moreInfo = form.querySelector("textarea[name=more_info]");
+      this.$streetOutput = form.querySelector("li[name=address]");
+      this.$cityOutput = form.querySelector("li[name=city]");
+      this.$postcodeOutput = form.querySelector("li[name=postcode]");
+      this.$phoneOutput = form.querySelector("li[name=phone]");
+      this.$dateOutput = form.querySelector("li[name=data]");
+      this.$timeOutput = form.querySelector("li[name=time]");
+      this.$moreInfoOutput = form.querySelector("li[name=more_info]");
+      this.$summaryDonation = form.querySelector("span[name=summary--donation]");
+      this.$summaryOrganization = form.querySelector("span[name=summary--organization]");
       this.$stepInstructions = form.querySelectorAll(".form--steps-instructions p");
       const $stepForms = form.querySelectorAll("form > div");
       this.slides = [...this.$stepInstructions, ...$stepForms];
@@ -247,8 +265,6 @@ document.addEventListener("DOMContentLoaded", function() {
       for (let i = 0; i < categories.length; i++) {
         for (let j = 0; j < this.$categoriesOfInstitution.length; j++) {
           let categoriesOfInstitution = this.$categoriesOfInstitution[j].innerText
-          console.log(categories[i]);
-          console.log(categoriesOfInstitution);
           if (categoriesOfInstitution.indexOf(categories[i]) >= 0) {
           } else {
             this.$categoriesOfInstitution[j].parentElement.hidden = true
@@ -256,6 +272,39 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       }
 
+      let categoriesNames = [];
+      for (let i = 0; i < categories.length; i++) {
+        if (categories[i] == 1) {
+          categoriesNames.push("ubrań")
+        } else if (categories[i] == 2) {
+          categoriesNames.push("zabawek")
+        } else if (categories[i] == 3) {
+          categoriesNames.push("książek")
+        } else if (categories[i] == 4) {
+          categoriesNames.push("sprzętu AGD")
+        } else if (categories[i] == 5) {
+          categoriesNames.push("jedzenia")
+        }
+      }
+
+      if (this.$quantity.value === 1) {
+        this.$summaryDonation.innerText = this.$quantity.value + " worek " + categoriesNames
+      } else if (this.$quantity.value >= 2 && this.$quantity.value <= 4) {
+        this.$summaryDonation.innerText = this.$quantity.value + " worki " + categoriesNames
+      } else {
+        this.$summaryDonation.innerText = this.$quantity.value + " worków " + categoriesNames
+      }
+
+      var checkedInstitution = form.querySelector('input[name=organization]:checked').value;
+
+      this.$summaryOrganization.innerText = "Wspierasz organizację: " + checkedInstitution;
+      this.$streetOutput.innerText = this.$street.value;
+      this.$cityOutput.innerText = this.$city.value;
+      this.$postcodeOutput.innerText = this.$postcode.value;
+      this.$phoneOutput.innerText = this.$phone.value;
+      this.$dateOutput.innerText = this.$date.value;
+      this.$timeOutput.innerText = this.$time.value;
+      this.$moreInfoOutput.innerText = this.$moreInfo.value;
     }
 
     /**
