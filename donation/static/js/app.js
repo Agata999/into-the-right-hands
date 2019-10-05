@@ -175,7 +175,6 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$checkboxCategories = form.querySelectorAll("input[type=checkbox]");
       this.$categoriesOfInstitution = form.querySelectorAll(".categories");
       this.$quantity = form.querySelector("input[name=bags]");
-      this.$chosenInstitution = form.querySelector("input[name=organization]:checked");
       this.$street = form.querySelector("input[name=address]");
       this.$city = form.querySelector("input[name=city]");
       this.$postcode = form.querySelector("input[name=postcode]");
@@ -287,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       }
 
-      if (this.$quantity.value === 1) {
+      if (this.$quantity.value == 1) {
         this.$summaryDonation.innerText = this.$quantity.value + " worek " + categoriesNames
       } else if (this.$quantity.value >= 2 && this.$quantity.value <= 4) {
         this.$summaryDonation.innerText = this.$quantity.value + " worki " + categoriesNames
@@ -312,11 +311,11 @@ document.addEventListener("DOMContentLoaded", function() {
      *
      * TODO: validation, send data to server
      */
-    submit(e) {
-      e.preventDefault();
-      this.currentStep++;
-      this.updateForm();
-    }
+    // submit(e) {
+    //   e.preventDefault();
+    //   this.currentStep++;
+    //   this.updateForm();
+    // }
   }
   const form = document.querySelector(".form--steps");
   if (form !== null) {

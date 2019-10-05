@@ -36,6 +36,31 @@ class AddDonation(LoginRequiredMixin, View):
         return render(request, 'form.html', {'categories': categories,
                                              'institutions': institutions})
 
+    def post(self, request):
+        quantity = request.POST['bags']
+        organization = request.POST['organization']
+        institution = get_object_or_404(Institution, name=organization)
+        address = request.POST['address']
+        phone_number = request.POST['phone']
+        city = request.POST['city']
+        zip_code = request.POST['postcode']
+        pick_up_date = request.POST['data']
+        pick_up_time = request.POST['time']
+        pick_up_comment = request.POST['more_info']
+        donation = Donation.objects.create(quantity=quantity, institution=institution, address=address,
+                                           phone_number=phone_number, city=city, zip_code=zip_code,
+                                           pick_up_date=pick_up_date, pick_up_time=pick_up_time,
+                                           pick_up_comment=pick_up_comment, user=request.user)
+        for category in request.POST['categories']:
+            c = Category.objects.get(id=category)
+            donation.categories.add(c)
+        return redirect('confirmation')
+
+
+class ConfirmationView(View):
+    def get(self, request):
+        return render(request, 'form-confirmation.html')
+
 
 class Login(View):
     def get(self, request):
@@ -84,3 +109,4 @@ class UserDetails(LoginRequiredMixin, View):
     def get(self, request, id):
         user = User.objects.get(id=id)
         return render(request, 'user.html', {'user': user})
+
