@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{%  block content %}
+    </header>
+    <section>
+        <h2>Twoje dary:</h2>
+            <ul class="help--slides-items">
+                <li>
+                    <div class="col">
+                      <div class="title">Instytucja:</div>
+                    </div>
+
+                    <div class="col">
+                        <div class="title">Liczba worków:</div>
+                    </div>
+
+                    <div class="col">
+                        <div class="title">Oddane rzeczy:</div>
+                    </div>
+
+                    <div class="col">
+                        <div class="title">
+                        Termin odbioru darów
+                            </br>przez kuriera:
+                        </div>
+                    </div>
+                </li>
+            {% for donation in user.donations.all %}
+                <li>
+                    <div class="col">
+                      <div class="subtitle">{{ donation.institution.name }}</div>
+                    </div>
+
+                    <div class="col">
+                        <div class="subtitle">
+                            {{ donation.quantity }}
+                                {% if donation.quantity == 1 %}
+                                worek
+                                {% elif donation.quantity > 1 and donation.quantity < 5 %}
+                                worki
+                                {% else %}
+                                worków
+                                {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="subtitle">
+                            {{ donation.categories.all|join:", " }}
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="subtitle">
+                            {{ donation.pick_up_date|date:"d/m/Y" }}
+                            godz. {{ donation.pick_up_time|time:"H:i" }}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+    </section>
+{% endblock %}

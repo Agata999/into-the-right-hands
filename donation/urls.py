@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from .views import LandingPage, AddDonation, Login, Register, Logout, UserDetails, ConfirmationView
+from .views import LandingPage, AddDonation, Login, Register, Logout, UserDetails, ConfirmationView, UserDonations
 
 urlpatterns = [
     path('', LandingPage.as_view(), name='landing_page'),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('logout/', Logout.as_view(), name='logout'),
     re_path(r'^user/(?P<id>(\d)+)', UserDetails.as_view(), name='user'),
     path('confirmation/', ConfirmationView.as_view(), name='confirmation'),
+    re_path(r'^your_donations/(?P<id>(\d)+)', UserDonations.as_view(), name='user_donations'),
 ]

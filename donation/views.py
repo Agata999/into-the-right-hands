@@ -107,6 +107,14 @@ class UserDetails(LoginRequiredMixin, View):
     login_url = '/login/'
 
     def get(self, request, id):
-        user = User.objects.get(id=id)
+        user = get_object_or_404(User, id=id)
         return render(request, 'user.html', {'user': user})
+
+
+class UserDonations(LoginRequiredMixin, View):
+    login_url = '/login/'
+
+    def get(self, request, id):
+        user = get_object_or_404(User, id=id)
+        return render(request, 'user_donations.html', {'user': user})
 
