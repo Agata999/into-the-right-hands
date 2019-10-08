@@ -249,6 +249,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
 
+    //     if(!this.$form.querySelector('input[type=checkbox]:checked')) {
+    //   alert("Wybierz kategorię");
+    //   return false;
+    // }
+
+
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 6;
       this.$step.parentElement.hidden = this.currentStep >= 6;
 
@@ -306,16 +312,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$moreInfoOutput.innerText = this.$moreInfo.value;
     }
 
-    /**
-     * Submit form
-     *
-     * TODO: validation, send data to server
-     */
-    // submit(e) {
-    //   e.preventDefault();
-    //   this.currentStep++;
-    //   this.updateForm();
-    // }
+
   }
   const form = document.querySelector(".form--steps");
   if (form !== null) {

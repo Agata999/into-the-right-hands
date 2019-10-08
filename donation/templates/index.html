@@ -61,7 +61,7 @@
     <section id="about-us" class="about-us">
       <div class="about-us--text">
         <h2>O nas</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero optio esse quisquam illo omnis.</p>
+        <p>Każdy z nas ma w domu rzeczy, których chce się pozbyć, ale nie wie jak. My też! Szkoda wyrzucać, przecież można komuś pomóc. Właśnie tak zrodził się w naszych głowach pomysł na stworzenie miejsca, w którym każdy będzie mógł oddać niepotrzebne rzeczy zaufanym instytucjom.</p>
         <img src="{% static 'images/signature.svg' %}" class="about-us--text-signature" alt="Signature" />
       </div>
       <div class="about-us--image"><img src="{% static 'images/about-us.jpg' %}" alt="People in circle" /></div>
@@ -78,7 +78,7 @@
 
       <!-- SLIDE 1 -->
       <div class="help--slides active" data-id="1">
-        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy. Możesz sprawdzić, czym się zajmują, komu pomagają </br>i czego potrzebują.</p>
+        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy. Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
 
         <ul class="help--slides-items">
             {% for foundation in foundations %}
@@ -90,9 +90,7 @@
 
             <div class="col">
                 <div class="text">
-                {% for category in foundation.categories.all %}
-                    {{ category }},
-                {% endfor %}
+                {{ foundation.categories.all|join:", " }}
                 </div>
             </div>
           </li>
@@ -104,7 +102,7 @@
       <!-- SLIDE 2 -->
       <div class="help--slides" data-id="2">
         <p>
-          W naszej bazie znajdziesz listę Organizacji Pozarządzowych, z którymi współpracujemy. Możesz sprawdzić, czym się zajmują, komu pomagają </br>i czego potrzebują.
+          Pomagamy również wszelkim organizacjom pozarządowym i charytatywnym, które nie są Fundacjami. Są to nasi Partnerzy, który zrobią dobry pożytek z rzeczy, które do nich trafią.
         </p>
         <ul class="help--slides-items">
             {% for NGO in NGOs %}
@@ -115,9 +113,7 @@
             </div>
 
             <div class="col"><div class="text">
-                {% for category in NGO.categories.all %}
-                    {{ category }},
-                {% endfor %}
+                {{ NGO.categories.all|join:", " }}
             </div></div>
           </li>
             {% endfor %}
@@ -126,7 +122,7 @@
 
       <!-- SLIDE 3 -->
       <div class="help--slides" data-id="3">
-        <p>Wspomagamy również zweryfikowane lokalne zbiórki</p>
+        <p>Wspieramy lokalne zbiórki organizowane przez indywidualne osoby, którym zależy na dobru społeczności, w której żyją. Sam też możesz zorganizować taką zbiórkę i pomóc tym, którzy są najbliżej.</p>
         <ul class="help--slides-items">
             {% for collection in local_collections %}
           <li>
@@ -136,9 +132,7 @@
             </div>
 
             <div class="col"><div class="text">
-                {% for category in collection.categories.all %}
-                    {{ category }},
-                {% endfor %}
+                {{ collection.categories.all|join:", " }}
             </div></div>
           </li>
             {% endfor %}

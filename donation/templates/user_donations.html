@@ -28,11 +28,11 @@
             {% for donation in user.donations.all %}
                 <li>
                     <div class="col">
-                      <div class="subtitle">{{ donation.institution.name }}</div>
+                      <div class="text">{{ donation.institution.name }}</div>
                     </div>
 
                     <div class="col">
-                        <div class="subtitle">
+                        <div class="text">
                             {{ donation.quantity }}
                                 {% if donation.quantity == 1 %}
                                 worek
@@ -45,13 +45,13 @@
                     </div>
 
                     <div class="col">
-                        <div class="subtitle">
+                        <div class="text">
                             {{ donation.categories.all|join:", " }}
                         </div>
                     </div>
 
                     <div class="col">
-                        <div class="subtitle">
+                        <div class="text">
                             {{ donation.pick_up_date|date:"d/m/Y" }}
                             godz. {{ donation.pick_up_time|time:"H:i" }}
                         </div>
