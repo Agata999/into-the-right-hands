@@ -7,7 +7,7 @@ urlpatterns = [
     path('login/', Login.as_view(), name='login'),
     path('register/', Register.as_view(), name='register'),
     path('logout/', Logout.as_view(), name='logout'),
-    re_path(r'^user/(?P<id>(\d)+)', UserDetails.as_view(), name='user'),
+    path('user/', UserDetails.as_view(), name='user'),
     path('confirmation/', ConfirmationView.as_view(), name='confirmation'),
-    re_path(r'^your_donations/(?P<id>(\d)+)', UserDonations.as_view(), name='user_donations'),
+    path('your_donations/', UserDonations.as_view(), name='user_donations'),
 ]

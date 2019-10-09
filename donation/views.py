@@ -106,15 +106,13 @@ class Logout(View):
 class UserDetails(LoginRequiredMixin, View):
     login_url = '/login/'
 
-    def get(self, request, id):
-        user = get_object_or_404(User, id=id)
-        return render(request, 'user.html', {'user': user})
+    def get(self, request):
+        return render(request, 'user.html', {'user': request.user})
 
 
 class UserDonations(LoginRequiredMixin, View):
     login_url = '/login/'
 
-    def get(self, request, id):
-        user = get_object_or_404(User, id=id)
-        return render(request, 'user_donations.html', {'user': user})
+    def get(self, request):
+        return render(request, 'user_donations.html', {'user': request.user})
 
