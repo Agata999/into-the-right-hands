@@ -214,6 +214,23 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$next.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
+
+          if(this.currentStep == 1 && !this.$form.querySelector('input[type=checkbox]:checked')) {
+        alert("Wybierz rzeczy, które chcesz oddać");
+        return false;
+      }
+          if(this.currentStep == 2 && this.$quantity.value.length == 0) {
+        alert("Musisz wskazać liczbę worków");
+        return false;
+      }
+          if(this.currentStep == 3 && !this.$form.querySelector('input[name=organization]:checked')) {
+        alert("Wybierz organizację, której chcesz pomóc");
+        return false;
+      }
+          if(this.currentStep == 4 && (this.$street.value.length == 0 || this.$city.value.length == 0 || this.$postcode.value.length == 0 || this.$phone.value.length == 0 || this.$date.value.length == 0 || this.$time.value.length == 0)) {
+        alert("Pola oznaczone gwiazdką są obowiązkowe");
+        return false;
+      }
           this.currentStep++;
           this.updateForm();
         });
@@ -223,6 +240,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$prev.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
+
           this.currentStep--;
           this.updateForm();
         });
@@ -241,6 +259,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // TODO: Validation
 
+
+
       this.slides.forEach(slide => {
         slide.classList.remove("active");
 
@@ -249,10 +269,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
 
-    //     if(!this.$form.querySelector('input[type=checkbox]:checked')) {
-    //   alert("Wybierz kategorię");
-    //   return false;
-    // }
+
 
 
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 6;
@@ -269,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       for (let i = 0; i < categories.length; i++) {
         for (let j = 0; j < this.$categoriesOfInstitution.length; j++) {
-          let categoriesOfInstitution = this.$categoriesOfInstitution[j].innerText
+          let categoriesOfInstitution = this.$categoriesOfInstitution[j].innerText;
           if (categoriesOfInstitution.indexOf(categories[i]) >= 0) {
           } else {
             this.$categoriesOfInstitution[j].parentElement.hidden = true
