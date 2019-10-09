@@ -717,11 +717,11 @@ form.form--contact textarea::placeholder {
 
 /* line 2, scss/modules/_header.scss */
 header.header--main-page {
-  background-image: url(../images/header-bg.jpg);
+  background-image: url(../images/headerbg.jpg);
   background-position: bottom left -30vh;
   background-repeat: no-repeat;
   background-size: 70vw;
-  height: 100vh;
+  height: 120vh;
 }
 
 @media (min-width: 990px) and (max-width: 1230px) {
@@ -763,7 +763,7 @@ header .slogan--item {
 @media (min-width: 990px) and (max-width: 1230px) {
   /* line 29, scss/modules/_header.scss */
   header .slogan--item {
-    width: 75%;
+    width: 105%;
   }
 }
 
@@ -790,7 +790,6 @@ header .slogan--item h1:after {
   display: block;
   width: 256px;
   height: 40px;
-  background-image: url(../images/decoration.svg);
   background-size: contain;
   margin-top: 25px;
   margin-left: calc(50% - 128px);
@@ -1342,7 +1341,7 @@ header nav ul li:last-of-type {
 /* line 1, scss/modules/_footer.scss */
 footer {
   min-height: 80vh;
-  background-image: url(../images/footer-bg.jpg);
+  background-image: url(../images/contact.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
