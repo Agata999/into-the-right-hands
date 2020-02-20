@@ -8,6 +8,7 @@ http://into-the-right-hands.herokuapp.com/
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
+* [Status](#status)
 
 ## Technologies
 * Python - version 3.6
@@ -32,3 +33,6 @@ http://into-the-right-hands.herokuapp.com/
 * User forms to register, log in / log out
 * List of user’s donations (option only for logged in users)
 * Admin site
+
+## Status
+Project is: _finished_
